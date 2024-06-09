@@ -6,19 +6,29 @@ class App extends Component {
     super();
 
     this.state = {
-      name: "zafar",
+      monsters: [],
     };
   }
 
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState(
+          (_state, _props) => {
+            return {
+              monsters: data,
+            };
+          },
+          () => {
+            console.log(this.state);
+          }
+        );
+      });
+  }
+
   render() {
-    return (
-      <div className="App">
-        <p>Hi, {this.state.name}</p>
-        <button onClick={() => this.setState({ name: "abu" })}>
-          Change Name
-        </button>
-      </div>
-    );
+    return <div className="App"></div>;
   }
 }
 
