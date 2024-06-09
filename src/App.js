@@ -16,7 +16,6 @@ export const App = () => {
   }, []);
 
   const filteredMonsters = useMemo(() => {
-    console.log("I got called");
     return monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchString.toLocaleLowerCase())
     );
