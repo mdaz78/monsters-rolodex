@@ -6,7 +6,7 @@ import SearchBox from './components/search-box/search-box.component';
 import './App.css';
 import { getData } from './utils/data.utils';
 
-export interface Monsters {
+export interface Monster {
   id: number;
   name: string;
   email: string;
@@ -14,13 +14,12 @@ export interface Monsters {
 
 const App = () => {
   const [searchValue, setSearchValue] = useState<string>('');
-  const [monsters, setMonsters] = useState<Monsters[]>([]);
-  const [filteredMonsters, setFilteredMonsters] =
-    useState<Monsters[]>(monsters);
+  const [monsters, setMonsters] = useState<Monster[]>([]);
+  const [filteredMonsters, setFilteredMonsters] = useState<Monster[]>(monsters);
 
   useEffect(() => {
     const fetchMonsters = async () => {
-      const monsters = await getData<Monsters[]>(
+      const monsters = await getData<Monster[]>(
         'https://jsonplaceholder.typicode.com/users'
       );
       setMonsters(monsters);
@@ -30,7 +29,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const filteredResults = monsters.filter(({ name }: Monsters) =>
+    const filteredResults = monsters.filter(({ name }: Monster) =>
       name.toLocaleLowerCase().includes(searchValue)
     );
 
