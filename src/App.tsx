@@ -4,26 +4,33 @@ import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
 
 import './App.css';
+import { getData } from './utils/data.utils';
 
-export interface Monster {
+export interface Monsters {
   id: number;
   name: string;
   email: string;
 }
 
 const App = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [monsters, setMonsters] = useState([]);
-  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [monsters, setMonsters] = useState<Monsters[]>([]);
+  const [filteredMonsters, setFilteredMonsters] =
+    useState<Monsters[]>(monsters);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((monsters) => setMonsters(monsters));
+    const fetchMonsters = async () => {
+      const monsters = await getData<Monsters[]>(
+        'https://jsonplaceholder.typicode.com/users'
+      );
+      setMonsters(monsters);
+    };
+
+    fetchMonsters();
   }, []);
 
   useEffect(() => {
-    const filteredResults = monsters.filter(({ name }: Monster) =>
+    const filteredResults = monsters.filter(({ name }: Monsters) =>
       name.toLocaleLowerCase().includes(searchValue)
     );
 

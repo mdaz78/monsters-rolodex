@@ -1,10 +1,10 @@
-import { Monster } from '../../App';
+import { Monsters } from '../../App';
 import Card from '../card/card.component';
 
 import './card-list.styles.css';
 
 interface ICardListProps {
-  monsters: Monster[];
+  monsters: Monsters[];
 }
 
 const CardList = ({ monsters }: ICardListProps) => {
