@@ -5,6 +5,7 @@ import SearchBox from './components/search-box/search-box.component';
 
 import './App.css';
 import { getData } from './utils/data.utils';
+import { MONSTER_URL } from './constants';
 
 export interface Monster {
   id: number;
@@ -19,9 +20,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchMonsters = async () => {
-      const monsters = await getData<Monster[]>(
-        'https://jsonplaceholder.typicode.com/users'
-      );
+      const monsters = await getData<Monster[]>(MONSTER_URL);
       setMonsters(monsters);
     };
 
