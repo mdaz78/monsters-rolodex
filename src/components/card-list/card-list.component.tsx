@@ -1,8 +1,13 @@
+import { Monsters } from '../../App';
 import Card from '../card/card.component';
 
 import './card-list.styles.css';
 
-const CardList = ({ monsters }) => {
+interface ICardListProps {
+  monsters: Monsters[];
+}
+
+const CardList = ({ monsters }: ICardListProps) => {
   return (
     <div className='card-list'>
       {monsters.map(({ name, id, email }) => (

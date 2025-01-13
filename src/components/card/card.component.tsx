@@ -1,6 +1,12 @@
 import './card.styles.css';
 
-const Card = ({ id, name, email }) => {
+interface ICardProps {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const Card = ({ id, name, email }: ICardProps) => {
   return (
     <div className='card-container'>
       <img
